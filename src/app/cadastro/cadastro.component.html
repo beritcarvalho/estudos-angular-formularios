@@ -15,10 +15,13 @@
     <div class="formulario__dupla">
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="nascimento">Nascimento</label>
-        <input ngModel #nascimento="ngModel" name="nascimento" id="nascimento" type="date" class="campo__escrita" required maiorIdadeValidator/>
+        <input ngModel #nascimento="ngModel" name="nascimento" id="nascimento" type="date" class="campo__escrita"
+          required maiorIdadeValidator />
         <div *ngIf="(nascimento?.invalid && nascimento?.touched) || nascimento?.dirty">
-          <app-mensagem *ngIf="nascimento?.errors?.['required']" mensagem="O campo nascimento deve ser preenchido"></app-mensagem>
-          <app-mensagem *ngIf="nascimento?.errors?.['maiorIdadeValidator']" mensagem="O usuário deve ser maior de idade"></app-mensagem>
+          <app-mensagem *ngIf="nascimento?.errors?.['required']"
+            mensagem="O campo nascimento deve ser preenchido"></app-mensagem>
+          <app-mensagem *ngIf="nascimento?.errors?.['maiorIdadeValidator']"
+            mensagem="O usuário deve ser maior de idade"></app-mensagem>
         </div>
       </div>
       <div class="formulario__campo">
@@ -49,37 +52,47 @@
 
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="cep">CEP</label>
-      <input name="cep" id="cep" class="campo__escrita" />
-      <div id="erro"></div>
+      <input ngModel #cep="ngModel" name="cep" id="cep" class="campo__escrita" required pattern="^(\d{5})(-?\d{3})$"
+        minlength="8" maxlength="9" (blur)="consultaCEP($event, f)" validandoCep />
+      <div *ngIf="(cep?.invalid && cep?.touched) || cep?.dirty">
+        <app-mensagem *ngIf="cep?.errors?.['required']" mensagem="O campo cep deve ser preenchido"></app-mensagem>
+        <app-mensagem *ngIf="cep?.errors?.['pattern']"
+          mensagem="O campo CEP deve seguir este exemplo: 00000-000"></app-mensagem>
+        <app-mensagem *ngIf="cep?.errors?.['validandoCep']" mensagem="O CEP informado é invalido"></app-mensagem>
+      </div>
     </div>
 
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="endereco">Endereço</label>
-      <input name="endereco" id="endereco" class="campo__escrita" />
+      <input ngModel #endereco name="endereco" id="endereco" class="campo__escrita" />
     </div>
     <div class="formulario__dupla">
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="numero">Numero</label>
-        <input name="numero" id="numero" class="campo__escrita" />
+        <input ngModel #numero="ngModel" name="numero" id="numero" class="campo__escrita" required />
+        <div *ngIf="(numero?.invalid && numero?.touched) || numero?.dirty">
+          <app-mensagem *ngIf="numero?.errors?.['required']"
+            mensagem="O campo numero deve ser preenchido"></app-mensagem>
+        </div>
       </div>
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="complemento">Complemento</label>
-        <input name="complemento" id="complemento" class="campo__escrita" />
+        <input ngModel #complemento name="complemento" id="complemento" class="campo__escrita" />
       </div>
     </div>
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="bairro">Bairro</label>
-      <input name="bairro" id="bairro" class="campo__escrita" />
+      <input ngModel #bairro name="bairro" id="bairro" class="campo__escrita" />
     </div>
     <div class="formulario__dupla">
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="cidade">Cidade</label>
-        <input name="cidade" id="cidade" class="campo__escrita" />
+        <input ngModel #cidade name="cidade" id="cidade" class="campo__escrita" />
       </div>
 
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="estado">UF</label>
-        <select id="estado" name="estado" class="campo__escrita">
+        <select ngModel #cidade name="estado" id="estado" name="estado" class="campo__escrita">
           <option value="AC">Acre</option>
           <option value="AL">Alagoas</option>
           <option value="AP">Amapá</option>
