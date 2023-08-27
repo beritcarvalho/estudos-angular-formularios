@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -9,18 +9,20 @@ import { NgForm } from '@angular/forms';
 })
 export class CadastroComponent implements OnInit {
 
+  @Input() berit: string = ''
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  cadastrar(form: NgForm){
-    if(form.valid){
+  cadastrar(form: NgForm){    
+    /*if(form.valid){
       this.router.navigate(['/sucesso'])
     }
     else{
       alert('Formulário Inválido')
-    }
-      console.log(form);
+    }*/
+      console.log(form.controls);
+      console.log(this.berit);
   }
 }
